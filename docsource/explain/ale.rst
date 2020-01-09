@@ -1,0 +1,71 @@
+=========================
+Accumulated Local Effects
+=========================
+
+Usage
+-----
+
+.. code-block:: 
+
+    xai.ale.plot_single(feature="weekday", filename="bikes-weekday-ale", monte_carlo=False, bins=10)
+
+Requisites
+----------
+
+The explainer requires the training data, the predict function attached to the model and a feature to globally explain.
+
+Accepted Models/Data
+--------------------
+
+Data
+^^^^
+
+Currently supported datatypes are:
+
+* Tabular data
+
+Within this type, categorical features are not yet supported and so the only type supported thusfar is regular numerical data.
+
+Models
+^^^^^^
+
+As the explainer only requires the predict function to be passed as a parameter, in theory any model can be used.
+
+Dimensionality
+--------------
+
+blah blah blah
+
+Caveats
+-------
+
+The most important caveat with ALE is that it's easy to get into a false sense of security in regard to interpreting the plots. Despite it taking correlation between features into consideration, 
+interpreting an ALE of one of two strongly correlated features doesn't give the full picture. This is a problem when analysing correlated features rather than a problem with ALE.
+
+Theoretically you can plot 2 features against each other like with PDP, however because the ALE package is very undeveloped, this is not yet available.
+
+ALE segments the range of feature values into bins, the number of which can be specified. A large number of bins gives greater accuracy but comes at the cost of a jagged graph. This can 
+make the general trend harder to grasp. Alternatively too few bins will give a graph that's not very faithful to the actual model response.
+
+NOT WORKING WITH CLASSIFICATION APPARENTLY
+
+
+
+Output interpretation
+---------------------
+
+ALE plots have the full range of feature values on the x axis, with the y axis representing the difference in the model response with respect to the mean.
+
+In the example below you can see that the number of bikes rented were at their lowest on Sunday, and gets progressively higher as the week goes on. This makes a lot of sense
+as renting a bike is typically a tourist activity, something which is likely to occur on weekends.
+
+.. figure:: ../../assets/ale-weekday.png
+    :align: center
+    :scale: 80
+    
+    Figure 1: ALE plot for the feature "weekday" in the bike sharing dataset.
+    
+If you compare this to its counterpart, PDP, you can see that the differences between values is a lot more pronounced. This is because PDP cannot seperate the correlations
+between features.
+    
+    

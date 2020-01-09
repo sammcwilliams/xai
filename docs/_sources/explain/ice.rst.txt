@@ -1,0 +1,43 @@
+=================
+ICE Visualisation
+=================
+
+Usage
+-----
+
+blah
+
+Requisites
+----------
+
+blah
+
+Accepted Models/Data
+--------------------
+
+Data
+^^^^
+
+blah
+
+Models
+^^^^^^
+
+blah
+
+Dimensionality
+--------------
+
+blah blah blah
+
+Caveats
+-------
+
+blah
+
+Output interpretation
+---------------------
+
+blah
+    
+    

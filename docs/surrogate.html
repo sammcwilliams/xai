@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Global Surrogate &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ceteris Paribus" href="cetpar.html" />
+    <link rel="prev" title="Shapley Values" href="shapley.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> XAI
+          
+
+          
+            
+            <img src="_static/raa-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Global Surrogate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accepted-data-models">Accepted Data/Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#nearest-neighbour">Nearest Neighbour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#requisites">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#caveats">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id2">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id3">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id4">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id5">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id6">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id7">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ice.html">ICE Visualisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ice.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ice.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lime.html">Local Interpretable Model Explanation (LIME)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#models">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#what-s-local">What’s Local?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#inconsistency">Inconsistency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ale.html">Accumulated Local Effects (ALE)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ale.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ale.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ale.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#one-feature">One Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#two-features">Two Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#correlation">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#average-dangerous">Average == Dangerous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#feature-distribution">Feature Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#output-interpretation">Output interpretation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#id1">One feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#id2">Two features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="anch.html">Anchors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="anch.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="anch.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="summaries.html">Summaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-an-instance">Summarising an instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-a-feature">Summarising a feature</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Global Surrogate</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/surrogate.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="global-surrogate">
+<h1>Global Surrogate<a class="headerlink" href="#global-surrogate" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Tree-like models have a lot more transparency in terms of interpretability, and as such this module’s purpose is to approximate the function of the given model
+and remodel it into tree form. The resulting image is the surrogate model in tree form, with the decision rules on each node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">surrogate</span><span class="o">.</span><span class="n">global_surrogate</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;tree_surrogate.png&quot;</span><span class="p">,</span> <span class="n">max_leaves</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The filename argument here is self-explanatory, and the max_leaves argument constrains the explainer to have a maximum of 10 leaf nodes in this example.</p>
+<p>For the Iris dataset, the Random Forest Classifier defined in the Initialisation section is reinterpreted as the following decision tree. While I do understand that
+reinterpreting a tree as another surrogate tree is pointless, this works for all sklearn models so the princible is there.</p>
+<div class="figure align-center" id="id1">
+<img alt="_images/doc_surrogate.png" src="_images/doc_surrogate.png" />
+<p class="caption"><span class="caption-text">Figure 1: Diagram of the model interpreted in tree form.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="requisites">
+<h2>Requisites<a class="headerlink" href="#requisites" title="Permalink to this headline">¶</a></h2>
+<p>This explainer requires the model to be modelled, and the training data used to train the model.</p>
+</div>
+<div class="section" id="accepted-data-models">
+<h2>Accepted Data/Models<a class="headerlink" href="#accepted-data-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>Because the explainer is using the original model to interpret the data, as long as the data is in the same format that you trained the model with, then the explainer should be able to understand it.</p>
+</div>
+<div class="section" id="models">
+<h3>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<p>The subpackage Skater takes the model’s predict function as a parameter, meaning that theoretically this technique can work with any model.</p>
+</div>
+</div>
+<div class="section" id="dimensionality">
+<h2>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h2>
+<p>For large models/datasets, the memory requirements increase rapidly. However this is a technical issue and not theoretical, meaning it’s very fixable.</p>
+<p>The new surrogate model will have been trained on the model’s response, and not the ground truth presented in the data. While this is clearly the aim of a surrogate model (to see inside the black box)
+it is an important distinction.</p>
+<p>It should also be made clear that complex, high-dimensional models like neural networks, get reduced in accuracy when reinterpreted as decision trees. This is exacerbated when the number of leaf nodes are limited
+so that it’s more human-readable.</p>
+</div>
+<div class="section" id="output-interpretation">
+<h2>Output interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>As you can see in Figure 1, at each node there are various pieces of information.</p>
+<ul class="simple">
+<li><p>The criteria by which to navigate the tree - This is what defines the mechanics and traversal of the tree. Only present on non-leaf nodes.</p></li>
+<li><p>Gini - This is a metric used for splitting decision trees. If you are familar with the CART algorithm for building decision trees you will be familiar with this. Essentially the lower the gini index, the less the node would misclassify a random instance passing through it.</p></li>
+<li><p>MSE - In the regression case, the mean square error is the metric used for determining split points. If you don’t know what MSE is then put this tool down.</p></li>
+<li><p>Samples - This is the proportion of instances in the dataset which would travel to/through that node.</p></li>
+<li><p>Value - Indicates the model’s response at that node.</p></li>
+<li><p>Class - Gives the classification the model would output, induced by the value.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cetpar.html" class="btn btn-neutral float-right" title="Ceteris Paribus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="shapley.html" class="btn btn-neutral float-left" title="Shapley Values" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Sam McWilliams
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

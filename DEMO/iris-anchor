@@ -1,0 +1,5 @@
+IF      petal length (cm) <= 4.40
+AND     sepal width (cm) > 3.30
+AND     petal width (cm) <= 1.80
+THEN PREDICT Class 1 WITH 100.0% CONFIDENCE.
+THIS EXPLANATION APPLIES TO 25.62% OF THE TRAINING DATA.

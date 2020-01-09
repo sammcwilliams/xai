@@ -1,0 +1,114 @@
+==============================
+Partial Dependence Plots (PDP)
+==============================
+
+Usage
+-----
+
+PDP's are a plot of a feature's effect on the prediction globally across all instances. In fact, they are an average of all the ICE plots, which in this implementation, have been overlaid on
+top of the PDP. The PDP on its own could be misleading, for example, half of the instances could show an increase in the prediction and the other half a decrease.
+This would result in the PDP showing a horizontal line, when in fact the effect is more nuanced.
+
+Additionally, PDP's do not take into consideration the interactivity between features and assume independence. To help mitigate this, you can plot two features
+against each other with respect to the prediction. This is capped at two due to a difficulty representing graphs in higher dimensions.
+
+For a single feature, you need to pass the function the feature name as a string and also a filename. For two features, they need to be passed as a list or array type object.
+
+.. code-block:: 
+
+    xai.pdp.calculate_single_pdp(feature_name="petal length (cm)", filename="petal_length_pdp.png")
+    xai.pdp.calculate_double_pdp(feature_names=["sepal length (cm)","sepal width (cm)"], filename="sepal_features_pdp.png")
+
+One Feature
+^^^^^^^^^^^
+
+As you can see below, the partial dependence line has been plotted for each class, alongside the ICE plots too.
+
+.. figure:: ../../assets/doc_single_pdp.png
+    :align: center
+
+    Figure 1: PDP for feature "petal width (cm)" from the Iris dataset wrt Class0.
+    
+
+Two Features
+^^^^^^^^^^^^
+
+The below image shows the interaction between both the petal length and petal width features. The length is displayed on x-axis and the width on the y-axis.
+The prediction likelihood is coloured in accordance with the key on the right hand side, with the boundaries of the prediction changes also being labelled on the axes.
+
+.. figure:: ../../assets/doc_double_pdp.png
+    :align: center
+
+    Figure 2: PDP for features "petal width (cm)" and "petal length (cm)" from the Iris dataset.
+
+Requisites
+----------
+
+The model, the training data and the feature(s) to be inspected are all required to calcluate the partial dependence.
+
+Accepted Models/Data
+--------------------
+
+Data
+^^^^
+
+Currently recognised by PDPBox are the following data types.
+
+* Binary. Requires the data to actually take the values [0,1] (and not any two numbers [a,b]).
+* Onehot (Categorical). Requires the feature to be passed as a list. Categories must have already been split into multiple features in order to encode as onehot. The list corresponding to the feature must contain strings describing each column of interest.
+* Numeric. Is the default and is selected if not binary or onehot.
+
+Models
+^^^^^^
+
+PDPBox claims it can use any sklearn model. 
+
+It appears that PDPBox only requires a model.predict/predict_proba function and so extending the PDP part of the explainer to other models will not be too difficult, likely using a model wrapper.
+
+Dimensionality
+--------------
+
+PDP uses the entirety of the training data to calculate the partial dependence of a feature, however there is also functionality for using a custom dataset.
+
+Caveats
+-------
+
+Correlation
+^^^^^^^^^^^
+
+The primary issue with PDP's are that they assume that the features do not correlate with each other. Correlation between features is almost always going to occur
+for even the simplest of problems, however this method is very intuitive, and the general trend of the plot can still provide reasonable insight into the behaviour of the model for small correlations.
+
+Average == Dangerous
+^^^^^^^^^^^^^^^^^^^^
+
+As the PDP is the average marginal contribution of the feature, the nuance of behaviour can be missed entirely. You could imagine half the data has a positive association, with the other half giving a 
+negative association, resulting in the PDP being a straight line. This is mitigated by overlaying ICE plots for individual instances, which is done automatically, however this is only possible for single feature plots.
+
+Feature Distribution
+^^^^^^^^^^^^^^^^^^^^
+
+Typically certain feature values are under represented in the data, and these are likely to be at the upper or lower bound. If this is not made clear it can be easy to forget that the PDP is extrapolating from minimal data.
+In some cases it may be extrapolating from just one instance which in all likelihood could be an outlier and unrepresentative of the model behaviour.
+
+Output interpretation
+---------------------
+
+One feature
+^^^^^^^^^^^
+
+For a single feature PDP, on the x-axis you have the range of feature values that the selected feature has taken in the training data. On the y-axis you have the effect of the feature on the prediction. For regression
+problems this means that the expected target value will increase when the plot's rises. For classification it produces a plot for each class, whereby each plot represents the contribution of that feature to the likelihood of 
+that class being predicted, *assuming* that the model predicts that class.
+
+In figure 1 you can see that as soon as the petal length reaches 1.5, the likelihood of predicting class0 decreases rapidly, plateauing *(look at those consecutive vowels)* at around -0.4. The situation becomes slightly more
+nuanced in the class1 case. As you can see the line is clearly the average of two main trends, with one being more prevalent than the other. Interpretation of this is quite open-ended however it is clear that there is more going on here
+in comparison to the class0 case.
+
+Two features
+^^^^^^^^^^^^
+
+For two features, there is a key on the right-hand side that segments the range of target predictions into roughly 8 colours, going from purple as the lowest response up to yellow corresponding to the highest.
+Each axis is labelled with both the features and is marked with ticks signifying the feature values. 
+
+For example in Figure 2, you can see that in general, as the classes increment (class0, class1, class2), the petals in general appear to be larger.

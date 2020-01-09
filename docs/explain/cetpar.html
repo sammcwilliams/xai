@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ceteris Paribus &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Partial Dependence Plots (PDP)" href="pdp.html" />
+    <link rel="prev" title="Global Surrogate" href="surrogate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> XAI
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../explain.html">Explainability and Interpretability</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../explain.html#background">Background</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../explain.html#intepretable-methods">Intepretable Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#explainable-boosting-machine">Explainable Boosting Machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#rule-list">Rule List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#skope-rules">Skope Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#corels">CORELS</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../explain.html#explainers">Explainers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lime.html">Lime</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="anch.html">Anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html">Shapley Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ceteris Paribus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nearest-neighbour">Nearest Neighbour</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../explain.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fair.html">Fairness and Bias</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#fairness-definition">Fairness Definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fair.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../secure.html">Security and Privacy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../secure.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../secure.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secure.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../explain.html">Explainability and Interpretability</a> &raquo;</li>
+        
+      <li>Ceteris Paribus</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/explain/cetpar.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ceteris-paribus">
+<h1>Ceteris Paribus<a class="headerlink" href="#ceteris-paribus" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nearest-neighbour">
+<h2>Nearest Neighbour<a class="headerlink" href="#nearest-neighbour" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<p>Using the training data supplied to the XAI object, an instance (existing in the training data or not) can be supplied to the nearest neighbour function
+to find the most similar instances that the model was trained on. This can be used to probe where the decision boundaries are, as the algorithm does
+not use the target values in the distance calculation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">neighbours</span> <span class="o">=</span> <span class="n">xai</span><span class="o">.</span><span class="n">ceteris</span><span class="o">.</span><span class="n">neighbours</span><span class="p">(</span><span class="n">test_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">test_y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The line above returns a pandas DataFrame with 5 rows containing the n nearest neighbours. The target y-value is optional however its
+inclusion can be very informative.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Root</span> <span class="n">instance</span><span class="p">:</span>
+   <span class="n">sepal</span> <span class="n">length</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">sepal</span> <span class="n">width</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">petal</span> <span class="n">length</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">petal</span> <span class="n">width</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">Class</span>
+<span class="mi">0</span>                <span class="mf">6.1</span>               <span class="mf">2.8</span>                <span class="mf">4.0</span>               <span class="mf">1.3</span>      <span class="mi">1</span>
+
+<span class="n">Nearest</span> <span class="n">neighbours</span><span class="p">:</span>
+   <span class="n">sepal</span> <span class="n">length</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">sepal</span> <span class="n">width</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">petal</span> <span class="n">length</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">petal</span> <span class="n">width</span> <span class="p">(</span><span class="n">cm</span><span class="p">)</span>  <span class="n">Class</span>
+<span class="mi">0</span>                <span class="mf">6.4</span>               <span class="mf">2.9</span>                <span class="mf">4.3</span>               <span class="mf">1.3</span>      <span class="mi">1</span>
+<span class="mi">1</span>                <span class="mf">5.7</span>               <span class="mf">2.8</span>                <span class="mf">4.1</span>               <span class="mf">1.3</span>      <span class="mi">1</span>
+<span class="mi">2</span>                <span class="mf">5.8</span>               <span class="mf">2.7</span>                <span class="mf">3.9</span>               <span class="mf">1.2</span>      <span class="mi">1</span>
+<span class="mi">3</span>                <span class="mf">5.7</span>               <span class="mf">2.9</span>                <span class="mf">4.2</span>               <span class="mf">1.3</span>      <span class="mi">1</span>
+<span class="mi">4</span>                <span class="mf">5.7</span>               <span class="mf">2.8</span>                <span class="mf">4.5</span>               <span class="mf">1.3</span>      <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="requisites">
+<h3>Requisites<a class="headerlink" href="#requisites" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="accepted-data">
+<h3>Accepted Data<a class="headerlink" href="#accepted-data" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="accepted-models">
+<h3>Accepted Models<a class="headerlink" href="#accepted-models" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="dimensionality">
+<h3>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="caveats">
+<h3>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>ICE plots, much like Partial Dependence plots, can produce invalid datapoints when the feature in question is correlated with others.</p></li>
+<li><p>Typical ICE plots use the prediction likelihood on the y-axis rather than the predicted class, and also seperate the classes into seperate plots. For visualisation
+purposes. For this type of ICE plot please see the PDP section where you can plot features per class, with the addition of an average running through it.</p></li>
+</ol>
+</div>
+<div class="section" id="output-interpretation">
+<h3>Output interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h3>
+<p>Just look matey</p>
+</div>
+</div>
+<div class="section" id="plot-instances-per-feature-ice">
+<h2>Plot instances per feature (ICE)<a class="headerlink" href="#plot-instances-per-feature-ice" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This submodule has the capability to plot multiple predicted feature distributions for each instance, given that all the other features do not change.
+These are called Individual Conditional Expectation (ICE) plots. Ceteris Paribus translates to “all other things being equal”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">ceteris</span><span class="o">.</span><span class="n">plot_instances</span><span class="p">(</span><span class="n">test_x</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">test_y</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The preceding line plots the first 20 instances of the test set, looking only at the sepal features of the iris dataset. At the moment this will save in a folder, an HTML file and accompanying
+javascript files, which when run in a browser will bring up an interactive visualisation of the instances.</p>
+<div class="figure align-center" id="id8">
+<img alt="../_images/doc_ceteris.png" src="../_images/doc_ceteris.png" />
+<p class="caption"><span class="caption-text">Figure 1: Diagram showing the browser window containing the interactive ICE plots for the selected features.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>Hovering your mouse over any of the instances in the bottom portion of the window will single out that instance in each of the ICE plots. Similarly, when you hover over the line
+in each of the plots, a summary for that instance appears describing the prediction for that feature.</p>
+</div>
+<div class="section" id="id2">
+<h3>Requisites<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="id3">
+<h3>Accepted Data<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="id4">
+<h3>Accepted Models<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="id5">
+<h3>Dimensionality<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="id6">
+<h3>Caveats<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>ICE plots, much like Partial Dependence plots, can produce invalid datapoints when the feature in question is correlated with others.</p></li>
+<li><p>Typical ICE plots use the prediction likelihood on the y-axis rather than the predicted class, and also seperate the classes into seperate plots. For visualisation
+purposes. For this type of ICE plot please see the PDP section where you can plot features per class, with the addition of an average running through it.</p></li>
+</ol>
+</div>
+<div class="section" id="id7">
+<h3>Output interpretation<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Just look mate</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pdp.html" class="btn btn-neutral float-right" title="Partial Dependence Plots (PDP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="surrogate.html" class="btn btn-neutral float-left" title="Global Surrogate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Advanced Analytics
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+Feature Importance:
+AVG
+yr               0.001720
+holiday          0.002845
+weather_misty    0.007390
+weather_wet      0.010064
+mnth             0.010858
+workingday       0.011799
+weekday          0.022066
+weather_clear    0.022732
+windspeed        0.048361
+temp             0.103531
+hum              0.123142
+atemp            0.182319
+instant          0.453173
+dtype: float64

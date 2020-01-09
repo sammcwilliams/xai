@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exploratory Data Analysis &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> XAI
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="explain.html">Explainability and Interpretability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="explain.html#background">Background</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="explain.html#intepretable-methods">Intepretable Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#explainable-boosting-machine">Explainable Boosting Machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#rule-list">Rule List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#skope-rules">Skope Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explain.html#corels">CORELS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="explain.html#explainers">Explainers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="explain/lime.html">Lime</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/anch.html">Anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/featimp.html">Feature Importance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/shapley.html">Shapley Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/cetpar.html#nearest-neighbour">Nearest Neighbour</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="explain/pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explain/pdp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="explain.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fair.html">Fairness and Bias</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#fairness-definition">Fairness Definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fair.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="secure.html">Security and Privacy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="secure.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="secure.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Exploratory Data Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/insight.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="exploratory-data-analysis">
+<h1>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="decision-boundary-analysis">
+<h2>Decision Boundary Analysis<a class="headerlink" href="#decision-boundary-analysis" title="Permalink to this headline">¶</a></h2>
+<p>This method uses the Ceteris Paribus, Nearest Neighbours algorithm to find the nearest n neighbours in the feature space of each instance in the training data. By comparing the target values
+of the nearest neighbours and the original instance in question, you can use the difference in the predictions as a measurement of how well defined the decision boundary is.
+This can then inform the data collection process.</p>
+<p>For classification problems, this difference in predictions is measured as the number of neighbours that do not share the same class as the original. For regression
+this measurement is done by cumulatively adding the absolute difference between original instance and the neighbours.</p>
+<p>The following snippet of code returns the top 20 instances with the highest metric described above. This top 20 is defined by <code class="docutils literal notranslate"><span class="pre">top_n=20</span></code>, and the number of neighbours to explore for each
+instance is given by <code class="docutils literal notranslate"><span class="pre">n_nearest=10</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">boundaries</span> <span class="o">=</span> <span class="n">xai</span><span class="o">.</span><span class="n">decision_boundary_exploration</span><span class="p">(</span><span class="n">n_nearest</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="caveats">
+<h3>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h3>
+<p>Don’t bother with this for large datasets because it takes way too long.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Advanced Analytics
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

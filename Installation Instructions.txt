@@ -1,0 +1,7 @@
+first:
+
+pip install -r requirements.txt
+
+second:
+
+go into pdpbox.pdp_plot_utils and change line 251 to have fontsize=fontsize instead

@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Summaries &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Anchors" href="anch.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> XAI
+          
+
+          
+            
+            <img src="_static/raa-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#nearest-neighbour">Nearest Neighbour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#requisites">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#caveats">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id2">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id3">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id4">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id5">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id6">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id7">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lime.html">Local Interpretable Model Explanation (LIME)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#one-feature">One Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#two-features">Two Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#correlation">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#average-dangerous">Average == Dangerous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#feature-distribution">Feature Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="anch.html">Anchors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Summaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summarising-an-instance">Summarising an instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summarising-a-feature">Summarising a feature</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Summaries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/summaries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="summaries">
+<h1>Summaries<a class="headerlink" href="#summaries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summarising-an-instance">
+<h2>Summarising an instance<a class="headerlink" href="#summarising-an-instance" title="Permalink to this headline">¶</a></h2>
+<p>Since a lot of the methods used in this toolbox require an instance as an input, it seemed obvious to collate them all into one function. Calling the  <code class="docutils literal notranslate"><span class="pre">summarise_instances</span></code> function will return the following
+results:</p>
+<ul class="simple">
+<li><p>An <strong>Anchor</strong> explanation that the instance satisfies</p></li>
+<li><p>The <strong>Nearest neighbours</strong> to the instance in the feature space</p></li>
+<li><p>A <strong>LIME</strong> explanation of the instance</p></li>
+<li><p>A plot of how the <strong>Shapley values</strong> could describe the instance</p></li>
+</ul>
+<p>The function below takes the results from these explanations and puts them in the folder “iris-tests”. The top two will be saved as a .txt file and the bottom two will be saved as images.
+Each file saved in this folder will be prefixed with the method used, eg. <code class="docutils literal notranslate"><span class="pre">lime-instance-zero.png</span></code> would contain the lime explaination.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">summarise_instance</span><span class="p">(</span><span class="n">test_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">folder_name</span><span class="o">=</span><span class="s2">&quot;iris-tests&quot;</span><span class="p">,</span> <span class="n">filename_suffix</span><span class="o">=</span><span class="s2">&quot;instance-zero&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">test_y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="summarising-a-feature">
+<h2>Summarising a feature<a class="headerlink" href="#summarising-a-feature" title="Permalink to this headline">¶</a></h2>
+<p>Calling the <code class="docutils literal notranslate"><span class="pre">summarise_features</span></code> function will return the following results:</p>
+<ul class="simple">
+<li><p>An <strong>ALE plot</strong> of the feature</p></li>
+<li><p>A <strong>Partial Dependence Plot (PDP)</strong> of the feature</p></li>
+<li><p>An interactive <strong>ICE plot</strong> of the feature</p></li>
+<li><p>An insight into the <strong>importance</strong> of the feature</p></li>
+<li><p>The <strong>distribution</strong> of the feature</p></li>
+</ul>
+<p>Much like the <code class="docutils literal notranslate"><span class="pre">summarise_instance</span></code> function described above, this function takes a folder_name as a parameter, however the filename suffix will not be needed, as the feature serves as an ample enough
+unique identifier. The ALE and PD plots will be exported as images, the interactive ICE plots and feature distributions will be exported as html files, and the feature importance will be saved into a txt file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">summarise_feature</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;petal length (cm)&quot;</span><span class="p">,</span> <span class="n">folder_name</span><span class="o">=</span><span class="s2">&quot;iris-tests&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="anch.html" class="btn btn-neutral float-left" title="Anchors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Sam McWilliams
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

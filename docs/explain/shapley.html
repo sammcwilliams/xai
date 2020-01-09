@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Shapley Values &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Global Surrogate" href="surrogate.html" />
+    <link rel="prev" title="Feature Importance" href="featimp.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> XAI
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../explain.html">Explainability and Interpretability</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../explain.html#intepretable-methods">Intepretable Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#explainable-boosting-machine">Explainable Boosting Machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#rule-list">Rule List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#skope-rules">Skope Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#corels">CORELS</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../explain.html#explainers">Explainers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lime.html">LIME</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="anch.html">Anchor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Shapley Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accepted-data-models">Accepted Data/Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cetpar.html#nearest-neighbour">Nearest Neighbour</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ale.html">Accumulated Local Effects (ALE)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ale.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#accepted-models-data">Accepted Models/Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#caveats">Caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="summaries.html">Summarisations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="summaries.html#summarising-an-instance">Summarising an instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="summaries.html#summarising-a-feature">Summarising a feature</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../explain.html#resources">Resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../explain.html#datasets">Datasets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fair.html">Fairness and Bias</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fair.html#fairness-definition">Fairness Definition</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../secure.html">Security and Privacy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secure/lime.html">lime</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#requisites">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../secure/lime.html#models">Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../secure/lime.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#caveats">Caveats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../secure/lime.html#what-s-local">What’s Local?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../secure/lime.html#inconsistency">Inconsistency</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../secure/lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../explain.html">Explainability and Interpretability</a> &raquo;</li>
+        
+      <li>Shapley Values</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/explain/shapley.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="shapley-values">
+<h1>Shapley Values<a class="headerlink" href="#shapley-values" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The Shapley value is a technique brought in from game theory that treats each instance as a player, and treats the prediction as the payoff.</p>
+<p>In essence what it does is it looks at how each feature may contribute to the prediction in contrast to the average, by iterating through and permuting
+features. After analysing the training data in this way, the instances you pass to it can be explained as features causing deviations from the average.</p>
+<p>For some semblance of detail, see this <a class="reference external" href="https://christophm.github.io/interpretable-ml-book/shapley.html">page</a></p>
+<div class="section" id="calculation">
+<h3>Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shapley_values</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">xai</span><span class="o">.</span><span class="n">shap</span><span class="o">.</span><span class="n">shapley_kernel</span><span class="p">(</span><span class="n">test_x</span><span class="p">[:</span><span class="mi">50</span><span class="p">],</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By passing the first 50 instances in the test set, the function will return both the shapley values for these 50 instances and the
+expected value(s) (the average).</p>
+<p>The n_samples parameter is only used in conjuction with the kernel Shapley explainer as in reality, calculating the
+Shapley values is incredibly expensive. Therefore instead of iterating over every instance in the data and doing an exponential calculation, simply sampling
+the data using kmeans, with n_samples as the k. The exponential calculation is still happening but just less times.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shapley_values</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">xai</span><span class="o">.</span><span class="n">shap</span><span class="o">.</span><span class="n">shapley_tree</span><span class="p">(</span><span class="n">test_x</span><span class="p">[:</span><span class="mi">50</span><span class="p">],</span> <span class="n">feature_dependence</span><span class="o">=</span><span class="s2">&quot;tree_path_dependent&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The feature_dependence parameter in the tree explainer determines the way in which the Shapley algorithm considers correlated features. By following the
+path down the tree and seeing the distribution of instances that follow each path, you can find an approximation for the background data. This is indicated using the string
+above, “tree_path_dependent”. The alternative in the shap subpackage is “independent” where the dependencies between features are broken and the algorithm uses the background data
+to explain non-linear transofrms of the model’s output.</p>
+<p>If you’re working with a classification problem, the number of classes will indicate the shape of the returned variables. If there are 3 classes
+then the shapley values will take the shape (3, num_instances) and the expected values (3,). Intuitively this means that for each class,
+you are supposing the features of an instance take the given values, and the results show how much each feature value would contribute if
+the model had predicted that class.</p>
+<p>For regression the shapley values will take the shape (num_instances,) and the expected value will be a float.</p>
+</div>
+<div class="section" id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<p>Plotting the shapley values of an instance requires the values themselves, the expected value (of that class if necessary) and a filename. Optionally
+you can also pass the feature names too, which will serve as annotations for the plot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">shap</span><span class="o">.</span><span class="n">plot_shapley</span><span class="p">(</span><span class="n">shapley_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">expected</span><span class="p">,</span> <span class="s2">&quot;test_data_shapley_plot.png&quot;</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since the shap subpackage doesn’t have functionality for plotting multiple figures in matplotlib, you can only plot one instance at a time.
+This is easily mitigated with a loop.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shapley_values</span><span class="p">)):</span>
+    <span class="n">xai</span><span class="o">.</span><span class="n">shap</span><span class="o">.</span><span class="n">plot_shapley</span><span class="p">(</span><span class="n">shapley_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">expected</span><span class="p">,</span> <span class="s2">&quot;test_data_shapley_plot</span><span class="si">{0}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">feature_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Looping is also relevant if you wish to look at every class prediction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shapley_values</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">xai</span><span class="o">.</span><span class="n">n_classes</span><span class="p">):</span>
+        <span class="n">xai</span><span class="o">.</span><span class="n">shap</span><span class="o">.</span><span class="n">plot_shapley</span><span class="p">(</span><span class="n">shapley_values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">expected</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="s2">&quot;test_data_shapley_plot</span><span class="si">{0}</span><span class="s2">_class</span><span class="si">{1}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),</span> <span class="n">feature_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id1">
+<img alt="../_images/doc_shapley.png" src="../_images/doc_shapley.png" />
+<p class="caption"><span class="caption-text">Figure 1 : Box plot of the Shapley values associated with each feature.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The image above shows that for a prediction of Class 2, the likelihood that the model predicts this class given the features
+increases a little bit from the average prediction because of the sepal width, and decreases the chances of predicting Class 2 due to every other feature - resulting in zero chance of the instance
+being in Class 2.</p>
+</div>
+</div>
+<div class="section" id="requisites">
+<h2>Requisites<a class="headerlink" href="#requisites" title="Permalink to this headline">¶</a></h2>
+<p>The model, the training data and the instances to be inspected are all required to calcluate Shapley values.</p>
+</div>
+<div class="section" id="accepted-data-models">
+<h2>Accepted Data/Models<a class="headerlink" href="#accepted-data-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="models">
+<h3>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<p>The shap subpackage deals with different models in different ways. There are 3 seperate explainers for each of the supported types.</p>
+<div class="section" id="treeexplainer">
+<h4>TreeExplainer<a class="headerlink" href="#treeexplainer" title="Permalink to this headline">¶</a></h4>
+<p>The TreeExplainer module exploits the fact that calculating Shapley values from a tree is made easier. This is due to the conditional expectations that are implicit in each path to the leaf nodes. In
+this case, the accepted models are all sklearn tree models, XGBoost models, LightGBM models and CatBoost models.</p>
+</div>
+<div class="section" id="deepexplainer">
+<h4>DeepExplainer<a class="headerlink" href="#deepexplainer" title="Permalink to this headline">¶</a></h4>
+<p>The DeepExplainer module handles neural networks as mdoels and is compatible with TensorFlow, Keras and Pytorch based networks.</p>
+<p>This module is not actually implemented yet but is due to be at some point.</p>
+</div>
+<div class="section" id="kernelexplainer">
+<h4>KernelExplainer<a class="headerlink" href="#kernelexplainer" title="Permalink to this headline">¶</a></h4>
+<p>This explainer is for all other models. For this you merely need to pass the predict function and so theoretically any model can be used.</p>
+</div>
+</div>
+</div>
+<div class="section" id="dimensionality">
+<h2>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h2>
+<p>Is very computationally expensive.</p>
+</div>
+<div class="section" id="output-interpretation">
+<h2>Output interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>Just look bro</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="surrogate.html" class="btn btn-neutral float-right" title="Global Surrogate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="featimp.html" class="btn btn-neutral float-left" title="Feature Importance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Advanced Analytics
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

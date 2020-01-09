@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Partial Dependence Plots (PDP) &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Anchors" href="anch.html" />
+    <link rel="prev" title="Local Interpretable Model Explanation (LIME)" href="lime.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> XAI
+          
+
+          
+            
+            <img src="_static/raa-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#nearest-neighbour">Nearest Neighbour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#requisites">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#caveats">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id2">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id3">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id4">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id5">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id6">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id7">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lime.html">Local Interpretable Model Explanation (LIME)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#models">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#what-s-local">What’s Local?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#inconsistency">Inconsistency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-feature">One Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#two-features">Two Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#correlation">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#average-dangerous">Average == Dangerous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-distribution">Feature Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output interpretation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">One feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Two features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="anch.html">Anchors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="summaries.html">Summaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-an-instance">Summarising an instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-a-feature">Summarising a feature</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Partial Dependence Plots (PDP)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pdp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="partial-dependence-plots-pdp">
+<h1>Partial Dependence Plots (PDP)<a class="headerlink" href="#partial-dependence-plots-pdp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>PDP’s are a plot of a feature’s effect on the prediction globally across all instances. In fact, they are an average of all the ICE plots, which in this implementation, have been overlaid on
+top of the PDP. The PDP on its own could be misleading, for example, half of the instances could show an increase in the prediction and the other half a decrease.
+This would result in the PDP showing a horizontal line, when in fact the effect is more nuanced.</p>
+<p>Additionally, PDP’s do not take into consideration the interactivity between features and assume independence. To help mitigate this, you can plot two features
+against each other with respect to the prediction. This is capped at two due to a difficulty representing graphs in higher dimensions.</p>
+<p>For a single feature, you need to pass the function the feature name as a string and also a filename. For two features, they need to be passed as a list or array type object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xai</span><span class="o">.</span><span class="n">pdp</span><span class="o">.</span><span class="n">calculate_single_pdp</span><span class="p">(</span><span class="n">feature_name</span><span class="o">=</span><span class="s2">&quot;petal length (cm)&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;petal_length_pdp.png&quot;</span><span class="p">)</span>
+<span class="n">xai</span><span class="o">.</span><span class="n">pdp</span><span class="o">.</span><span class="n">calculate_double_pdp</span><span class="p">(</span><span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sepal length (cm)&quot;</span><span class="p">,</span><span class="s2">&quot;sepal width (cm)&quot;</span><span class="p">],</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;sepal_features_pdp.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="one-feature">
+<h3>One Feature<a class="headerlink" href="#one-feature" title="Permalink to this headline">¶</a></h3>
+<p>As you can see below, the partial dependence line has been plotted for each class, alongside the ICE plots too.</p>
+<div class="figure align-center" id="id3">
+<img alt="_images/doc_single_pdp.png" src="_images/doc_single_pdp.png" />
+<p class="caption"><span class="caption-text">Figure 1: PDP for feature “petal width (cm)” from the Iris dataset wrt Class0.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="two-features">
+<h3>Two Features<a class="headerlink" href="#two-features" title="Permalink to this headline">¶</a></h3>
+<p>The below image shows the interaction between both the petal length and petal width features. The length is displayed on x-axis and the width on the y-axis.
+The prediction likelihood is coloured in accordance with the key on the right hand side, with the boundaries of the prediction changes also being labelled on the axes.</p>
+<div class="figure align-center" id="id4">
+<img alt="_images/doc_double_pdp.png" src="_images/doc_double_pdp.png" />
+<p class="caption"><span class="caption-text">Figure 2: PDP for features “petal width (cm)” and “petal length (cm)” from the Iris dataset.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="requisites">
+<h2>Requisites<a class="headerlink" href="#requisites" title="Permalink to this headline">¶</a></h2>
+<p>The model, the training data and the feature(s) to be inspected are all required to calcluate the partial dependence.</p>
+</div>
+<div class="section" id="accepted-models-data">
+<h2>Accepted Models/Data<a class="headerlink" href="#accepted-models-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>Currently recognised by PDPBox are the following data types.</p>
+<ul class="simple">
+<li><p>Binary. Requires the data to actually take the values [0,1] (and not any two numbers [a,b]).</p></li>
+<li><p>Onehot (Categorical). Requires the feature to be passed as a list. Categories must have already been split into multiple features in order to encode as onehot. The list corresponding to the feature must contain strings describing each column of interest.</p></li>
+<li><p>Numeric. Is the default and is selected if not binary or onehot.</p></li>
+</ul>
+</div>
+<div class="section" id="models">
+<h3>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<p>PDPBox claims it can use any sklearn model.</p>
+<p>It appears that PDPBox only requires a model.predict/predict_proba function and so extending the PDP part of the explainer to other models will not be too difficult, likely using a model wrapper.</p>
+</div>
+</div>
+<div class="section" id="dimensionality">
+<h2>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>PDP uses the entirety of the training data to calculate the partial dependence of a feature, however there is also functionality for using a custom dataset.</p>
+</div>
+<div class="section" id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="correlation">
+<h3>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h3>
+<p>The primary issue with PDP’s are that they assume that the features do not correlate with each other. Correlation between features is almost always going to occur
+for even the simplest of problems, however this method is very intuitive, and the general trend of the plot can still provide reasonable insight into the behaviour of the model for small correlations.</p>
+</div>
+<div class="section" id="average-dangerous">
+<h3>Average == Dangerous<a class="headerlink" href="#average-dangerous" title="Permalink to this headline">¶</a></h3>
+<p>As the PDP is the average marginal contribution of the feature, the nuance of behaviour can be missed entirely. You could imagine half the data has a positive association, with the other half giving a
+negative association, resulting in the PDP being a straight line. This is mitigated by overlaying ICE plots for individual instances, which is done automatically, however this is only possible for single feature plots.</p>
+</div>
+<div class="section" id="feature-distribution">
+<h3>Feature Distribution<a class="headerlink" href="#feature-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Typically certain feature values are under represented in the data, and these are likely to be at the upper or lower bound. If this is not made clear it can be easy to forget that the PDP is extrapolating from minimal data.
+In some cases it may be extrapolating from just one instance which in all likelihood could be an outlier and unrepresentative of the model behaviour.</p>
+</div>
+</div>
+<div class="section" id="output-interpretation">
+<h2>Output interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>One feature<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>For a single feature PDP, on the x-axis you have the range of feature values that the selected feature has taken in the training data. On the y-axis you have the effect of the feature on the prediction. For regression
+problems this means that the expected target value will increase when the plot’s rises. For classification it produces a plot for each class, whereby each plot represents the contribution of that feature to the likelihood of
+that class being predicted, <em>assuming</em> that the model predicts that class.</p>
+<p>In figure 1 you can see that as soon as the petal length reaches 1.5, the likelihood of predicting class0 decreases rapidly, plateauing <em>(look at those consecutive vowels)</em> at around -0.4. The situation becomes slightly more
+nuanced in the class1 case. As you can see the line is clearly the average of two main trends, with one being more prevalent than the other. Interpretation of this is quite open-ended however it is clear that there is more going on here
+in comparison to the class0 case.</p>
+</div>
+<div class="section" id="id2">
+<h3>Two features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>For two features, there is a key on the right-hand side that segments the range of target predictions into roughly 8 colours, going from purple as the lowest response up to yellow corresponding to the highest.
+Each axis is labelled with both the features and is marked with ticks signifying the feature values.</p>
+<p>For example in Figure 2, you can see that in general, as the classes increment (class0, class1, class2), the petals in general appear to be larger.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="anch.html" class="btn btn-neutral float-right" title="Anchors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lime.html" class="btn btn-neutral float-left" title="Local Interpretable Model Explanation (LIME)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Sam McWilliams
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

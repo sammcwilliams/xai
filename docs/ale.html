@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Accumulated Local Effects &mdash; XAI 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/black_box.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Partial Dependence Plots (PDP)" href="pdp.html" />
+    <link rel="prev" title="Local Interpretable Model Explanation (LIME)" href="lime.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> XAI
+          
+
+          
+            
+            <img src="_static/raa-logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#initialisation">Initialisation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featimp.html">Feature Importance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featimp.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#calculation">Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapley.html#plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shapley.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="surrogate.html">Global Surrogate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surrogate.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cetpar.html">Ceteris Paribus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#nearest-neighbour">Nearest Neighbour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#requisites">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-data">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#accepted-models">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#caveats">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cetpar.html#plot-instances-per-feature-ice">Plot instances per feature (ICE)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id1">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id2">Requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id3">Accepted Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id4">Accepted Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id5">Dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id6">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cetpar.html#id7">Output interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ice.html">ICE Visualisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ice.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ice.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ice.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lime.html">Local Interpretable Model Explanation (LIME)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#models">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#what-s-local">What’s Local?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lime.html#inconsistency">Inconsistency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lime.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accumulated Local Effects (ALE)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdp.html">Partial Dependence Plots (PDP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#one-feature">One Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#two-features">Two Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#caveats">Caveats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#correlation">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#average-dangerous">Average == Dangerous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#feature-distribution">Feature Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdp.html#output-interpretation">Output interpretation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#id1">One feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdp.html#id2">Two features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="anch.html">Anchors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#requisites">Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#accepted-models-data">Accepted Models/Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="anch.html#data">Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="anch.html#models">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#dimensionality">Dimensionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#caveats">Caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anch.html#output-interpretation">Output interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="summaries.html">Summaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-an-instance">Summarising an instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summaries.html#summarising-a-feature">Summarising a feature</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">XAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Accumulated Local Effects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ale.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="accumulated-local-effects">
+<h1>Accumulated Local Effects<a class="headerlink" href="#accumulated-local-effects" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>blah</p>
+</div>
+<div class="section" id="requisites">
+<h2>Requisites<a class="headerlink" href="#requisites" title="Permalink to this headline">¶</a></h2>
+<p>The explainer requires the training data, the predict function attached to the model and a feature to globally explain.</p>
+</div>
+<div class="section" id="accepted-models-data">
+<h2>Accepted Models/Data<a class="headerlink" href="#accepted-models-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>Currently supported datatypes are:</p>
+<ul class="simple">
+<li><p>Tabular data</p></li>
+</ul>
+<p>Within this type, categorical features are not yet supported and so the only type supported thusfar is regular numerical data.</p>
+</div>
+<div class="section" id="models">
+<h3>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h3>
+<p>As the explainer only requires the predict function to be passed as a parameter, in theory any model can be used.</p>
+</div>
+</div>
+<div class="section" id="dimensionality">
+<h2>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>blah blah blah</p>
+</div>
+<div class="section" id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h2>
+<p>The most important caveat with ALE is that it’s easy to get into a false sense of security in regard to interpreting the plots. Despite it taking correlation between features into consideration,
+interpreting an ALE of one of two strongly correlated features doesn’t give the full picture. This is a problem when analysing correlated features rather than a problem with ALE.</p>
+<p>Theoretically you can plot 2 features against each other like with PDP, however because the ALE package is very undeveloped, this is not yet available.</p>
+<p>ALE segments the range of feature values into bins, the number of which can be specified. A large number of bins gives greater accuracy but comes at the cost of a jagged graph. This can
+make the general trend harder to grasp. Alternatively too few bins will give a graph that’s not very faithful to the actual model response.</p>
+</div>
+<div class="section" id="output-interpretation">
+<h2>Output interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>ALE plots have the full range of feature values on the x axis, with the y axis representing the difference in the model response with respect to the mean.</p>
+<p>In the example below you can see that the number of bikes rented were at their lowest on Sunday, and gets progressively higher as the week goes on. This makes a lot of sense
+as renting a bike is typically a tourist activity, something which is likely to occur on weekends.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/ale-weekday.png"><img alt="_images/ale-weekday.png" src="_images/ale-weekday.png" style="width: 512.0px; height: 384.0px;" /></a>
+<p class="caption"><span class="caption-text">Figure 1: ALE plot for the feature “weekday” in the bike sharing dataset.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>If you compare this to its counterpart, PDP, you can see that the differences between values is a lot more pronounced. This is because PDP cannot seperate the correlations
+between features</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pdp.html" class="btn btn-neutral float-right" title="Partial Dependence Plots (PDP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lime.html" class="btn btn-neutral float-left" title="Local Interpretable Model Explanation (LIME)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Sam McWilliams
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
