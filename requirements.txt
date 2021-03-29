@@ -124,7 +124,7 @@ pycebox==0.0.1
 pyCeterisParibus==0.5.1
 pydotplus==2.0.2
 pygam==0.8.0
-Pygments==2.4.0
+Pygments==2.7.4
 pyparsing==2.4.0
 PyPDF2==1.26.0
 pyrsistent==0.15.2
