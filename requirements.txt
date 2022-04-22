@@ -126,7 +126,7 @@ pydotplus==2.0.2
 pygam==0.8.0
 Pygments==2.4.0
 pyparsing==2.4.0
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pyrsistent==0.15.2
 pysbrl==0.4.1
 PyScaffold==3.1
