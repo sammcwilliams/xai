@@ -141,7 +141,7 @@ pyzmq==18.0.1
 qii-tool==0.1.3
 readme-renderer==24.0
 recordclass==0.5
-reportlab==3.5.23
+reportlab==3.5.55
 repoze.lru==0.7
 requests==2.21.0
 requests-toolbelt==0.9.1
